@@ -1,0 +1,164 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+An element for integrate for any page.
+Example:
+
+  facebook-buttons> </facebook-buttons
+
+Example:
+
+
+  facebook-buttons
+                type="like"
+                href="https://www.facebook.com/GooglePolymer/"></facebook-buttons
+
+  facebook-buttons type="share" href="https://www.facebook.com/GooglePolymer/"></facebook-buttons
+
+  facebook-buttons type="send" href="https://www.facebook.com/GooglePolymer/"></facebook-buttons
+
+  facebook-buttons type="post" hrefPost="https://www.facebook.com/GooglePolymer/posts/1623950854534854"></facebook-buttons
+
+  facebook-buttons type="video" hrefVideo="https://www.facebook.com/renaudmargry/videos/1058679800813708/"></facebook-buttons
+
+  facebook-buttons type="plugin" href="https://www.facebook.com/GooglePolymer/"></facebook-buttons
+
+  facebook-buttons type="follow" href="https://www.facebook.com/GooglePolymer/"></facebook-buttons
+
+@demo demo/index.html
+@hero hero.svg
+-->
+<dom-module id="facebook-buttons">
+    <template>
+        <style>
+            :host {
+                display: block;
+                box-sizing: border-box;
+            }
+        </style>
+        <!-- Like Home Page-->
+        <template is="dom-if" if="{{types.like}}">
+            <div
+                    class="fb-like"
+                    data-width="450"
+                    data-show-faces="true">
+            </div>
+        </template>
+        <!--Share Page -->
+        <template is="dom-if" if="{{types.share}}">
+            <div
+                    class="fb-share-button"
+                    data-href$="{{href}}"
+                    data-layout="button_count">
+            </div>
+        </template>
+        <!--Send Page-->
+        <template is="dom-if" if="{{types.send}}">
+            <div
+                    class="fb-send"
+                    data-href$="{{href}}">
+            </div>
+        </template>
+        <!-- Post Content-->
+        <template is="dom-if" if="{{types.post}}">
+            <div
+                    class="fb-post"
+                    data-href$="{{hrefPost}}"
+                    data-width="250">
+            </div>
+        </template>
+        <!--Visualize Video from Facebook -->
+        <template is="dom-if" if="{{types.video}}">
+            <div class="fb-video"
+                 data-href$="{{hrefVideo}}"
+                 data-width="500"
+                 data-allowfullscreen="true"
+                 data-autoplay="false"></div>
+        </template>
+        <!-- Promote any Facebook Page on your website-->
+        <template is="dom-if" if="{{types.plugin}}">
+            <div
+                    class="fb-page"
+                    data-href$="{{href}}"
+                    data-tabs="timeline"
+                    data-small-header="false"
+                    data-adapt-container-width="true"
+                    data-hide-cover="false"
+                    data-show-facepile="true">
+
+            </div>
+            <div class="fb-page"
+                 data-href$="{{href}}"
+                 data-width="340"
+                 data-hide-cover="false"
+                 data-show-facepile="true">
+
+            </div>
+            <div class="fb-page"
+                 data-tabs="messages"
+                 data-href$="{{href}}"
+                 data-width="380">
+
+            </div>
+        </template>
+        <!--Follow a Page in Facebook-->
+        <template is="dom-if" if="{{types.follow}}">
+            <div
+                    class="fb-follow"
+                    data-href$="{{href}}">
+            </div>
+        </template>
+
+    </template>
+</dom-module>
+<script>
+    Polymer({
+        is: 'facebook-buttons',
+        properties: {
+            /**
+             * 'type' Is used to know what type buttons used it
+             */
+            type: String,
+            /**
+             * 'href' is used to get the URL from Facebook Page
+             */
+            href: {
+                type: String,
+                value: 'https://www.facebook.com/GooglePolymer/'
+            },
+            /**
+             * 'hrefPost' is used to get the URL from a post in Facebook
+             */
+            hrefPost: {
+                type: String,
+                value: 'https://www.facebook.com/GooglePolymer/posts/1623950854534854'
+            },
+            /**
+             * 'hrefVideo' is used to get the URL from a Video in Facebook
+             */
+            hrefVideo: {
+                type: String,
+                value: 'https://www.facebook.com/NewEntryMusic/videos/821188874633684/'
+            },
+            /**
+             * 'idApp' is used to get the ID from any App Register in Facebook Developer
+             */
+            idApp: {
+                type: String,
+                value: '1086542108030856'
+            }
+        },
+        ready: function () {
+            this.types = {};
+            this.set('types.' + this.type || 'like', true);
+        }
+    });
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId={{idApp}}";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
