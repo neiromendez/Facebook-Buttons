@@ -1,0 +1,36 @@
+{
+  "name": "facebook-buttons",
+  "authors": [
+    "neiro mendez alne1990@hotmail.com"
+  ],
+  "description": "An element for integrate for any page.",
+  "keywords": [
+    "web-component",
+    "polymer",
+    "seed"
+  ],
+  "main": "index.html",
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/neiromendez/facebook-buttons",
+  "ignore": [
+    "/.*",
+    "/test/"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.2.0"
+  },
+  "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "web-component-tester": "^4.0.0"
+  },
+  "_release": "bf59d5c8ad",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "bf59d5c8ada763641b36f7ad67b20692cd9df84f"
+  },
+  "_source": "git@github.com:neiromendez/facebook-buttons.git",
+  "_target": "master",
+  "_originalSource": "git@github.com:neiromendez/facebook-buttons",
+  "_direct": true
+}
